@@ -172,15 +172,18 @@
 </footer>
 
 <script>
-  const cart = [];
+  const cart = { RAIN: null, TELKOM: null };
 
   function addToCart(provider, name, price) {
-    cart.push({ provider, name, price });
+    // Only one product per provider allowed
+    cart[provider] = { provider, name, price };
+    renderCart();
+  });
     renderCart();
   }
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
+  function removeFromCart(provider) {
+    cart[provider] = null;
     renderCart();
   }
 
@@ -193,22 +196,32 @@
     let total = 0;
     let message = 'Hello M&J Internet,%0A%0AI would like to order the following unlimited data package(s):%0A';
 
-    cart.forEach((item, index) => {
+    Object.values(cart).forEach(item => {
+      if (!item) return;
       total += item.price;
       message += `- ${item.provider} ${item.name} (R${item.price}/month)%0A`;
 
       const li = document.createElement('li');
-      li.innerHTML = `${item.provider} ${item.name} - R${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
+      li.innerHTML = `${item.provider} ${item.name} - R${item.price} <button onclick="removeFromCart('${item.provider}')">Remove</button>`;
       cartItems.appendChild(li);
     });
 
-    totalEl.textContent = total;
-    message += `%0AEstimated Total: R${total} per month%0A%0APlease assist with the next steps.`;
+    totalEl.textContent = total.toFixed(2);
 
-    // REPLACE WITH YOUR BUSINESS WHATSAPP NUMBER (FORMAT: 27XXXXXXXXX)
-    whatsappLink.href = `https://wa.me/27XXXXXXXXX?text=${message}`;
+    if (total === 0) {
+      whatsappLink.href = '#';
+      return;
+    }
+
+    message += `%0AEstimated Total: R${total.toFixed(2)} per month%0A%0APlease assist with the next steps.`;
+
+    whatsappLink.href = `https://wa.me/27824166284?text=${message}`;
   }
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
