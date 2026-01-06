@@ -19,7 +19,7 @@
     header h1 { font-size: 2rem; margin-bottom: 10px; }
     header p { font-size: 1rem; opacity: 0.95; }
 
-    .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
+    .container { max-width: 900px; margin: 30px auto; padding: 0 15px; }
 
     .packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
 
@@ -59,7 +59,6 @@
     }
 
     .cart h2 { margin-bottom: 15px; }
-
     .cart ul { list-style: none; margin-bottom: 15px; }
 
     .cart li {
@@ -113,56 +112,35 @@
 
   <section class="packages">
 
-    <!-- RAIN Packages -->
+    <!-- RAIN ONLY -->
     <div class="card">
       <div>
-        <h3>RAIN Unlimited 10Mbps</h3>
+        <h3>RAIN Unlimited Data</h3>
         <div class="provider">RAIN</div>
-        <div class="price">R499 / month</div>
-        <div class="desc">Unlimited data, ideal for home browsing and streaming.</div>
+        <div class="price">R149.99 / month</div>
+        <div class="desc">Unlimited data for home use. Subject to RAIN coverage.</div>
       </div>
       <button onclick="addToCart('RAIN', 'Unlimited Data', 149.99)">Add to Cart</button>
     </div>
 
-    <div class="card">
-      <div>
-        <h3>RAIN Unlimited 20Mbps</h3>
-        <div class="provider">RAIN</div>
-        <div class="price">R699 / month</div>
-        <div class="desc">Faster speeds for work-from-home and HD streaming.</div>
-      </div>
-      <button onclick="addToCart('RAIN', 'Unlimited 20Mbps', 699)">Add to Cart</button>
-    </div>
-
-    <!-- TELKOM Packages -->
+    <!-- TELKOM ONLY -->
     <div class="card">
       <div>
         <h3>TELKOM LTE Unlimited</h3>
         <div class="provider">TELKOM</div>
-        <div class="price">R599 / month</div>
-        <div class="desc">Reliable LTE unlimited data with wide coverage.</div>
+        <div class="price">R99.99 / month</div>
+        <div class="desc">Reliable LTE unlimited data. Subject to TELKOM coverage.</div>
       </div>
       <button onclick="addToCart('TELKOM', 'LTE Unlimited', 99.99)">Add to Cart</button>
     </div>
 
-    <div class="card">
-      <div>
-        <h3>TELKOM 5G Unlimited</h3>
-        <div class="provider">TELKOM</div>
-        <div class="price">R899 / month</div>
-        <div class="desc">Ultra-fast 5G unlimited data where coverage is available.</div>
-      </div>
-      <button onclick="addToCart('TELKOM', '5G Unlimited', 899)">Add to Cart</button>
-    </div>
-
   </section>
 
-  <!-- Cart -->
   <section class="cart">
     <h2>Your Cart</h2>
     <ul id="cartItems"></ul>
-    <div class="total">Total: R<span id="total">0</span> / month</div>
-    <a id="whatsappLink" class="whatsapp-btn" href="#" target="_blank">Checkout via WhatsApp</a>
+    <div class="total">Total: R<span id="total">0.00</span> / month</div>
+    <a id="whatsappLink" class="whatsapp-btn" href="#">Checkout via WhatsApp</a>
   </section>
 
 </div>
@@ -172,13 +150,11 @@
 </footer>
 
 <script>
+  // HARD-LOCKED CART: ONLY TWO PRODUCTS ALLOWED
   const cart = { RAIN: null, TELKOM: null };
 
   function addToCart(provider, name, price) {
-    // Only one product per provider allowed
     cart[provider] = { provider, name, price };
-    renderCart();
-  });
     renderCart();
   }
 
@@ -202,7 +178,7 @@
       message += `- ${item.provider} ${item.name} (R${item.price}/month)%0A`;
 
       const li = document.createElement('li');
-      li.innerHTML = `${item.provider} ${item.name} - R${item.price} <button onclick="removeFromCart('${item.provider}')">Remove</button>`;
+      li.innerHTML = `${item.provider} ${item.name} - R${item.price.toFixed(2)} <button onclick="removeFromCart('${item.provider}')">Remove</button>`;
       cartItems.appendChild(li);
     });
 
@@ -222,7 +198,4 @@
 </body>
 </html>
 
-
-</body>
-</html>
 
