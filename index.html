@@ -124,7 +124,6 @@
 
   <section class="packages">
 
-    <!-- RAIN -->
     <div class="card">
       <div>
         <img src="rainimage2.jpg" alt="RAIN Unlimited Data">
@@ -136,7 +135,6 @@
       <button onclick="addToCart('RAIN', 'Unlimited Data', 149.99)">Add to Cart</button>
     </div>
 
-    <!-- TELKOM -->
     <div class="card">
       <div>
         <img src="telkomimage.jpg" alt="TELKOM LTE Unlimited">
@@ -148,7 +146,6 @@
       <button onclick="addToCart('TELKOM', 'LTE Unlimited', 99.99)">Add to Cart</button>
     </div>
 
-    <!-- REDBULL -->
     <div class="card">
       <div>
         <img src="redbullimage1.jpeg" alt="REDBULL ESIM Unlimited Data">
@@ -157,7 +154,7 @@
         <div class="price">R99.99 / month</div>
         <div class="desc">VPN SERVICE | WORKS 100% ON ESIM + ANDROID + IPHONE DEVICES.</div>
       </div>
-      <button onclick="addToCart('RedBull eSim', 'Unlimited Data', 99.99)">Add to Cart</button>
+      <button onclick="addToCart('REDBULL', 'Unlimited Data', 99.99)">Add to Cart</button>
     </div>
 
   </section>
@@ -176,7 +173,7 @@
 </footer>
 
 <script>
-  const cart = { RAIN: null, TELKOM: null };
+  const cart = { RAIN: null, TELKOM: null, REDBULL: null };
 
   function addToCart(provider, name, price) {
     cart[provider] = { provider, name, price };
@@ -195,15 +192,19 @@
 
     cartItems.innerHTML = '';
     let total = 0;
-    let message = 'Hello M&J Internet,%0A%0AI would like to order the following unlimited data package(s):%0A';
+
+    let message = `Hello M&J Internet,
+
+I would like to order the following unlimited data package(s):
+`;
 
     Object.values(cart).forEach(item => {
       if (!item) return;
       total += item.price;
-      message += `- ${item.provider} ${item.name} (R${item.price}/month)%0A`;
+      message += `- ${item.provider} ${item.name} (R${item.price}/month)\n`;
 
       const li = document.createElement('li');
-      li.innerHTML = `${item.provider} ${item.name} - R${item.price.toFixed(2)} 
+      li.innerHTML = `${item.provider} ${item.name} - R${item.price.toFixed(2)}
         <button onclick="removeFromCart('${item.provider}')">Remove</button>`;
       cartItems.appendChild(li);
     });
@@ -215,8 +216,14 @@
       return;
     }
 
-    message += `%0AEstimated Total: R${total.toFixed(2)} per month%0A%0APlease assist with the next steps.`;
-    whatsappLink.href = `https://wa.me/27824166284?text=${message}`;
+    message += `
+
+Estimated Total: R${total.toFixed(2)} per month
+
+Please assist with the next steps.`;
+
+    whatsappLink.href =
+      `https://wa.me/27824166284?text=${encodeURIComponent(message)}`;
   }
 </script>
 
