@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>M&J INTERNET | Unlimited Data – RAIN & TELKOM</title>
+  <title>M&J Internet | Unlimited Data – </title>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
@@ -21,7 +21,11 @@
 
     .container { max-width: 900px; margin: 30px auto; padding: 0 15px; }
 
-    .packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
 
     .card {
       background: #fff;
@@ -31,6 +35,14 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      margin-bottom: 15px;
     }
 
     .card h3 { font-size: 1.2rem; margin-bottom: 8px; }
@@ -105,45 +117,62 @@
 
 <header>
   <h1>M&J INTERNET</h1>
-  <p>Unlimited Data Packages – RAIN & TELKOM</p>
+  <p>Unlimited Data Packages</p>
 </header>
+
+  <nav>
+    <a href="esim.html">eSIM Trial</a>
+</nav>
+
 
 <div class="container">
 
   <section class="packages">
 
-    <!-- RAIN ONLY -->
     <div class="card">
       <div>
+        <img src="rainimage2.jpg" alt="RAIN Unlimited Data">
         <h3>RAIN Unlimited Data</h3>
         <div class="provider">RainGo</div>
         <div class="price">R149.99 / month</div>
-        <div class="desc">Unlimited data for home use. Subject to RAIN coverage.</div>
+        <div class="desc">VPN SERVICE | WORKS 100% ON ANDROID AND IPHONE DEVICES.</div>
       </div>
       <button onclick="addToCart('RAIN', 'Unlimited Data', 149.99)">Add to Cart</button>
     </div>
 
-    <!-- TELKOM ONLY -->
     <div class="card">
       <div>
-        <h3>TELKOM LTE Unlimited</h3>
+        <img src="telkomimage.jpg" alt="TELKOM 4G/5G Unlimited Data">
+        <h3>TELKOM 4G/5G Unlimited Data</h3>
         <div class="provider">Telkom SA</div>
-        <div class="price">R99.99 / month</div>
-        <div class="desc">Reliable LTE unlimited data. Subject to TELKOM coverage.</div>
+        <div class="price">R149.99 / month</div>
+        <div class="desc">VPN SERVICE | WORKS 100% ON ANDROID & IPHONE DEVICES.</div>
       </div>
-      <button onclick="addToCart('TELKOM', 'LTE Unlimited', 99.99)">Add to Cart</button>
+      <button onclick="addToCart('TELKOM', 'LTE Unlimited', 149.99)">Add to Cart</button>
     </div>
 
     <div class="card">
       <div>
-        <h3>REDBULL ESIM Unlimited Data</h3>
-        <div class="provider">RedBull eSim</div>
-        <div class="price">R99.99 / month</div>
-        <div class="desc">Only supports eSim + Iphone Devices.</div>
+        <img src="mtnimage.jpg" alt="MTN 4G/5G Unlimited Data">
+        <h3>MTN 4G/5G Unlimited Data</h3>
+        <div class="provider">MTN 4G/5G</div>
+        <div class="price">RR149.99 / month</div>
+        <div class="desc">VPN SERVICE | WORKS 100% ON ANDROID & IPHONE DEVICES.</div>
       </div>
-      <button onclick="addToCart('RedBull eSim', 'Unlimited Data', 99.99)">Add to Cart</button>
+      <button onclick="addToCart('MTN', 'Unlimited Data', 149.99)">Add to Cart</button>
     </div>
-  
+
+     <div class="card">
+      <div>
+        <img src="cellcimage1.jpg" alt="Cellc 4G/5G Unlimited Data">
+        <h3>Cellc 4G/5G Unlimited Data</h3>
+        <div class="provider">Cellc 4G/5G</div>
+        <div class="price">RR149.99 / month</div>
+        <div class="desc">VPN SERVICE | WORKS 100% ON ANDROID & IPHONE DEVICES.</div>
+      </div>
+      <button onclick="addToCart('CELLC', 'Unlimited Data', 149.99)">Add to Cart</button>
+    </div>
+    
   </section>
 
   <section class="cart">
@@ -160,8 +189,7 @@
 </footer>
 
 <script>
-  // HARD-LOCKED CART: ONLY TWO PRODUCTS ALLOWED
-  const cart = { RAIN: null, TELKOM: null };
+  const cart = { RAIN: null, TELKOM: null, REDBULL: null };
 
   function addToCart(provider, name, price) {
     cart[provider] = { provider, name, price };
@@ -180,15 +208,20 @@
 
     cartItems.innerHTML = '';
     let total = 0;
-    let message = 'Hello M&J Internet,%0A%0AI would like to order the following unlimited data package(s):%0A';
+
+    let message = `Hello M&J Internet,
+
+I would like to order the following unlimited data package(s):
+`;
 
     Object.values(cart).forEach(item => {
       if (!item) return;
       total += item.price;
-      message += `- ${item.provider} ${item.name} (R${item.price}/month)%0A`;
+      message += `- ${item.provider} ${item.name} (R${item.price}/month)\n`;
 
       const li = document.createElement('li');
-      li.innerHTML = `${item.provider} ${item.name} - R${item.price.toFixed(2)} <button onclick="removeFromCart('${item.provider}')">Remove</button>`;
+      li.innerHTML = `${item.provider} ${item.name} - R${item.price.toFixed(2)}
+        <button onclick="removeFromCart('${item.provider}')">Remove</button>`;
       cartItems.appendChild(li);
     });
 
@@ -199,12 +232,18 @@
       return;
     }
 
-    message += `%0AEstimated Total: R${total.toFixed(2)} per month%0A%0APlease assist with the next steps.`;
+    message += `
 
-    whatsappLink.href = `https://wa.me/27824166284?text=${message}`;
+Estimated Total: R${total.toFixed(2)} per month
+
+Please assist with the next steps.`;
+
+    whatsappLink.href =
+      `https://wa.me/27824166284?text=${encodeURIComponent(message)}`;
   }
 </script>
 
 </body>
 </html>
+
 
