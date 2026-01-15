@@ -71,6 +71,32 @@
             background-color: #133b6d;
         }
 
+        /* VIDEO SECTION */
+        .video-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .faq {
             background: white;
             padding: 20px;
@@ -92,7 +118,7 @@
 
 <header>
     <h1>Try Our eSIM Networks</h1>
-    <p>Test coverage, speed, and reliabiliy with our Vpn Service</p>
+    <p>Test coverage, speed, and reliability with our VPN service</p>
 </header>
 
 <section>
@@ -100,40 +126,57 @@
     <div class="steps">
         <div class="step-box">
             <strong>1. Choose Network</strong>
-            <p>Select the Rebull eSim Network.</p>
+            <p>Select the Redbull eSIM Network.</p>
         </div>
         <div class="step-box">
             <strong>2. Download App</strong>
-            <p>Download the Rebull Mobile App on Appstore Or Playstore.</p>
+            <p>Download the Redbull Mobile App from App Store or Play Store.</p>
         </div>
         <div class="step-box">
             <strong>3. Sign Up & Activate</strong>
-            <p>Sign up on the App and Activate the Free eSim Trial.</p>
+            <p>Sign up on the app and activate the free eSIM trial.</p>
         </div>
         <div class="step-box">
-            <strong>4.Download Vpn App</strong>
-            <p>Download the Vpn app called " NPV Tunnel ".</p>
+            <strong>4. Download VPN App</strong>
+            <p>Download the VPN app called <strong>NPV Tunnel</strong>.</p>
         </div>
-         <div class="step-box">
-            <strong>5.Download Vpn Configuration File </strong>
-            <p>Download the Vpn Configuration File below to import into the Vpn App.</p>
+        <div class="step-box">
+            <strong>5. Import VPN File</strong>
+            <p>Download and import the VPN configuration file into the app.</p>
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO GUIDE SECTION -->
+<section>
+    <h2>Video Guide: How to Install & Connect</h2>
+    <div class="video-box">
+        <p>
+            Watch the step-by-step video below to learn how to install the
+            <strong>Redbull Mobile App</strong>, activate your <strong>eSIM</strong>,
+            and connect using the <strong>VPN (NPV Tunnel)</strong>.
+        </p>
+
+        <div class="video-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/pEeFsjK_SEw"
+                title="Redbull eSIM & VPN Setup Guide"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
 </section>
 
 <section>
-    <h2>Available eSim Network</h2>
+    <h2>Available eSIM Network</h2>
     <div class="networks">
-
         <div class="network-card">
-            <h3>Redbull eSim</h3>
+            <h3>Redbull eSIM</h3>
             <p>Unlimited • Valid for 24 Hours</p>
             <p>Best for speed testing</p>
             <button>Try Redbull eSIM</button>
         </div>
-
-      
-
     </div>
 </section>
 
@@ -156,7 +199,7 @@
         Trials are limited and meant for basic testing.</p>
 
         <p><strong>Can I upgrade after the trial?</strong><br>
-        No. This is just to test the Vpn service. The networks that are available to buy are on the main page.</p>
+        No. This is only to test the VPN service. Available networks for purchase are on the main page.</p>
     </div>
 </section>
 
