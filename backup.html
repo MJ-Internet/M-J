@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>M&J Internet | Unlimited Data – </title>
+  <title>M&J Internet | Unlimited Data</title>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
@@ -18,6 +18,30 @@
 
     header h1 { font-size: 2rem; margin-bottom: 10px; }
     header p { font-size: 1rem; opacity: 0.95; }
+
+    /* NAVIGATION */
+    nav {
+      background: #ffffff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .nav-esim {
+      border: 2px solid #0b5ed7;
+      padding: 10px 22px;
+      border-radius: 25px;
+      text-decoration: none;
+      color: #0b5ed7;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .nav-esim:hover {
+      background: #0b5ed7;
+      color: #ffffff;
+    }
 
     .container { max-width: 900px; margin: 30px auto; padding: 0 15px; }
 
@@ -120,11 +144,14 @@
   <p>Unlimited Data Packages</p>
 </header>
 
-  <nav>
-    <a href="esim.html">eSIM Trial</a>
+<nav>
+  <a href="esim.html" class="nav-esim">📶 eSIM Trial</a>
 </nav>
 
-
+  <nav>
+  <a href="mtn.html" class="nav-mtn">📶 MTN Limited Data Trial</a>
+</nav>
+  
 <div class="container">
 
   <section class="packages">
@@ -142,7 +169,7 @@
 
     <div class="card">
       <div>
-        <img src="telkomimage.jpg" alt="TELKOM 4G/5G Unlimited Data">
+        <img src="telkomimage.jpg" alt="TELKOM Unlimited Data">
         <h3>TELKOM 4G/5G Unlimited Data</h3>
         <div class="provider">Telkom SA</div>
         <div class="price">R149.99 / month</div>
@@ -153,26 +180,26 @@
 
     <div class="card">
       <div>
-        <img src="mtnimage.jpg" alt="MTN 4G/5G Unlimited Data">
+        <img src="mtnimage.jpg" alt="MTN Unlimited Data">
         <h3>MTN 4G/5G Unlimited Data</h3>
         <div class="provider">MTN 4G/5G</div>
-        <div class="price">RR149.99 / month</div>
+        <div class="price">R149.99 / month</div>
         <div class="desc">VPN SERVICE | WORKS 100% ON ANDROID & IPHONE DEVICES.</div>
       </div>
       <button onclick="addToCart('MTN', 'Unlimited Data', 149.99)">Add to Cart</button>
     </div>
 
-     <div class="card">
+    <div class="card">
       <div>
-        <img src="cellcimage1.jpg" alt="Cellc 4G/5G Unlimited Data">
-        <h3>Cellc 4G/5G Unlimited Data</h3>
-        <div class="provider">Cellc 4G/5G</div>
-        <div class="price">RR149.99 / month</div>
+        <img src="cellcimage1.jpg" alt="CellC Unlimited Data">
+        <h3>CellC 4G/5G Unlimited Data</h3>
+        <div class="provider">CellC 4G/5G</div>
+        <div class="price">R149.99 / month</div>
         <div class="desc">VPN SERVICE | WORKS 100% ON ANDROID & IPHONE DEVICES.</div>
       </div>
       <button onclick="addToCart('CELLC', 'Unlimited Data', 149.99)">Add to Cart</button>
     </div>
-    
+
   </section>
 
   <section class="cart">
@@ -189,7 +216,7 @@
 </footer>
 
 <script>
-  const cart = { RAIN: null, TELKOM: null, REDBULL: null };
+  const cart = { RAIN: null, TELKOM: null, MTN: null, CELLC: null };
 
   function addToCart(provider, name, price) {
     cart[provider] = { provider, name, price };
