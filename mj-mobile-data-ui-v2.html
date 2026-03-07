@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M&J Internet | Mobile Data Deals</title>
+  <style>
+    :root {
+      --bg: #071120;
+      --panel: #0d1b2e;
+      --panel-2: #10233c;
+      --card: rgba(18, 35, 60, 0.88);
+      --line: rgba(255,255,255,0.09);
+      --text: #f8fbff;
+      --muted: #aab8cc;
+      --primary: #18c3ff;
+      --primary-2: #4f46e5;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(79,70,229,0.26), transparent 28%),
+        radial-gradient(circle at top left, rgba(24,195,255,0.18), transparent 25%),
+        linear-gradient(180deg, #071120 0%, #091526 42%, #08101d 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(100%, 430px);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 16px 14px 110px;
+      position: relative;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.92rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      background: linear-gradient(160deg, rgba(24,195,255,0.20), rgba(79,70,229,0.20)), var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -30px;
+      top: -35px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(24,195,255,0.38), transparent 70%);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dff7ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      max-width: 260px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 290px;
+      margin-bottom: 18px;
+    }
+
+    .signal-bar {
+      display: flex;
+      gap: 5px;
+      align-items: end;
+      height: 30px;
+      margin-bottom: 10px;
+    }
+
+    .signal-bar span {
+      width: 7px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #78e8ff, var(--primary));
+      box-shadow: 0 0 12px rgba(24,195,255,0.32);
+    }
+
+    .signal-bar span:nth-child(1) { height: 9px; }
+    .signal-bar span:nth-child(2) { height: 14px; }
+    .signal-bar span:nth-child(3) { height: 19px; }
+    .signal-bar span:nth-child(4) { height: 24px; }
+    .signal-bar span:nth-child(5) { height: 29px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 2px 14px;
+    }
+
+    .section-title h2 {
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title small {
+      color: var(--muted);
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .quick-link {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 15px;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+    }
+
+    .quick-link strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.98rem;
+    }
+
+    .quick-link span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .packages {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(16,35,60,0.96), rgba(10,24,42,0.94));
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .logo {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .network-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: #d5f8e2;
+      padding: 6px 10px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.20);
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .provider {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .price {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .price small {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .badge-5g {
+      color: #ffe4b5;
+      background: rgba(245,158,11,0.14);
+      border: 1px solid rgba(245,158,11,0.24);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .features span {
+      font-size: 0.78rem;
+      color: #dce7f7;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .card button,
+    .checkout-btn {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .card button:hover,
+    .checkout-btn:hover { transform: translateY(-1px); }
+
+    .card button {
+      background: linear-gradient(135deg, var(--primary), #39d0ff);
+      color: #052033;
+    }
+
+    .cart {
+      margin-top: 22px;
+      background: rgba(11, 25, 43, 0.96);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .cart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .cart-head h2 { font-size: 1.05rem; }
+
+    .cart-head span {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 10px 0 4px;
+    }
+
+    .cart ul { list-style: none; margin-bottom: 14px; }
+
+    .cart li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .cart li:last-child { border-bottom: none; }
+
+    .cart-item strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.92rem;
+    }
+
+    .cart-item span {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: #ff8d97;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    .total strong {
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    .checkout-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #22c55e, #25D366);
+      color: white;
+    }
+
+    .checkout-btn.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: rgba(255,255,255,0.52);
+      font-size: 0.78rem;
+      margin-top: 18px;
+      line-height: 1.45;
+    }
+
+    .floating-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: min(calc(100% - 28px), 402px);
+      padding: 12px 14px;
+      background: rgba(6, 15, 26, 0.92);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      z-index: 20;
+    }
+
+    .floating-bar small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 3px;
+      font-size: 0.76rem;
+    }
+
+    .floating-bar strong {
+      font-size: 1rem;
+    }
+
+    .floating-bar a {
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary-2), var(--primary));
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .floating-bar a.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    @media (min-width: 760px) {
+      .page {
+        width: min(100%, 1200px);
+        padding: 24px 20px 100px;
+      }
+
+      .packages {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .hero h1,
+      .hero p { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-badge">📶</div>
+        <div>
+          <strong>M&amp;J Internet</strong><br>
+          <span>Mobile Data Store</span>
+        </div>
+      </div>
+      <div>4G • 5G • eSIM</div>
+    </div>
+
+    <section class="hero">
+      <div class="pill">⚡ Fast activation • WhatsApp checkout</div>
+      <h1>Unlimited mobile data, built like a real phone network shop.</h1>
+      <p>Choose your network, compare pricing, and send your order directly to M&amp;J Internet in one tap.</p>
+      <div class="signal-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <small style="color: var(--muted);">Strong signal. Better deals. Mobile-first design.</small>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>3</strong>
+        <span>Networks</span>
+      </div>
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>Order channel</span>
+      </div>
+      <div class="stat">
+        <strong>1 tap</strong>
+        <span>Checkout</span>
+      </div>
+    </div>
+
+    <div class="quick-links">
+      <a href="esim.html" class="quick-link">
+        <strong>📱 eSIM Trial</strong>
+        <span>Start with an instant digital SIM experience.</span>
+      </a>
+      <a href="mtn.html" class="quick-link">
+        <strong>📡 MTN Trial</strong>
+        <span>Explore limited data offers for MTN devices.</span>
+      </a>
+    </div>
+
+    <main>
+        <div class="section-title">
+          <h2>Featured data plans</h2>
+          <small>Select one or more</small>
+        </div>
+
+        <section class="packages">
+          <article class="card">
+            <div class="card-top">
+              <div class="logo"><img src="rainimage2.jpg" alt="Rain data package"></div>
+              <div>
+                <div class="network-tag">🟢 Available now</div>
+                <h3>RAIN Unlimited Data</h3>
+                <div class="provider">RainGo Mobile</div>
+              </div>
+            </div>
+            <div class="price-row">
+              <div class="price">R149.99 <small>/ month</small></div>
+              <div class="badge-5g">4G / 5G</div>
+            </div>
+            <div class="features">
+              <span>Unlimited plan</span>
+              <span>Android</span>
+              <span>iPhone</span>
+            </div>
+            <div class="desc">VPN service with strong mobile compatibility for Android and iPhone devices.</div>
+            <button onclick="addToCart('RAIN', 'Unlimited Data', 149.99)">Add RAIN plan</button>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div class="logo"><img src="telkomimage.jpg" alt="Telkom data package"></div>
+              <div>
+                <div class="network-tag">🟢 Popular choice</div>
+                <h3>Telkom 4G/5G Unlimited</h3>
+                <div class="provider">Telkom SA</div>
+              </div>
+            </div>
+            <div class="price-row">
+              <div class="price">R99.99 <small>/ month</small></div>
+              <div class="badge-5g">4G / 5G</div>
+            </div>
+            <div class="features">
+              <span>Unlimited LTE</span>
+              <span>Android only</span>
+              <span>Monthly plan</span>
+            </div>
+            <div class="desc">Affordable Telkom option for Android users who need stable monthly unlimited access.</div>
+            <button onclick="addToCart('TELKOM', 'LTE Unlimited', 99.99)">Add Telkom plan</button>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div class="logo"><img src="cellcimage1.jpg" alt="CellC data package"></div>
+              <div>
+                <div class="network-tag">🟢 Multi-device</div>
+                <h3>CellC 4G/5G Unlimited</h3>
+                <div class="provider">CellC Mobile</div>
+              </div>
+            </div>
+            <div class="price-row">
+              <div class="price">R149.99 <small>/ month</small></div>
+              <div class="badge-5g">4G / 5G</div>
+            </div>
+            <div class="features">
+              <span>Unlimited plan</span>
+              <span>Android</span>
+              <span>iPhone</span>
+            </div>
+            <div class="desc">Balanced unlimited package for customers who want both iPhone and Android support.</div>
+            <button onclick="addToCart('CELLC', 'Unlimited Data', 149.99)">Add CellC plan</button>
+          </article>
+        </section>
+      </main>
+
+    <aside class="cart">
+        <div class="cart-head">
+          <h2>Your cart</h2>
+          <span>Ready for WhatsApp</span>
+        </div>
+        <ul id="cartItems"></ul>
+        <p id="emptyState" class="empty">No data plan selected yet. Tap any package to begin.</p>
+        <div class="total">
+          <span>Total monthly</span>
+          <strong>R<span id="total">0.00</span></strong>
+        </div>
+        <p class="footer-note">Use the WhatsApp checkout bar at the bottom to send your order directly to M&amp;J Internet.</p>
+      </aside>
+  </div>
+
+  <div class="floating-bar">
+    <div>
+      <small>Current total</small>
+      <strong>R<span id="floatingTotal">0.00</span> / month</strong>
+    </div>
+    <a id="floatingCheckout" class="disabled" href="#">💬 WhatsApp Checkout</a>
+  </div>
+
+  <script>
+    const cart = { RAIN: null, TELKOM: null, CELLC: null };
+
+    function addToCart(provider, name, price) {
+      cart[provider] = { provider, name, price };
+      renderCart();
+    }
+
+    function removeFromCart(provider) {
+      cart[provider] = null;
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItems = document.getElementById('cartItems');
+      const totalEl = document.getElementById('total');
+      const floatingTotal = document.getElementById('floatingTotal');
+      const emptyState = document.getElementById('emptyState');
+      const floatingCheckout = document.getElementById('floatingCheckout');
+
+      cartItems.innerHTML = '';
+      let total = 0;
+      let count = 0;
+
+      let message = `Hello M&J Internet,\n\nI would like to order the following mobile data package(s):\n`;
+
+      Object.values(cart).forEach(item => {
+        if (!item) return;
+        count += 1;
+        total += item.price;
+        message += `- ${item.provider} ${item.name} (R${item.price.toFixed(2)}/month)\n`;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="cart-item">
+            <strong>${item.provider} ${item.name}</strong>
+            <span>Monthly billing • R${item.price.toFixed(2)}</span>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart('${item.provider}')">Remove</button>
+        `;
+        cartItems.appendChild(li);
+      });
+
+      totalEl.textContent = total.toFixed(2);
+      floatingTotal.textContent = total.toFixed(2);
+      emptyState.style.display = count === 0 ? 'block' : 'none';
+
+      if (total === 0) {
+        floatingCheckout.href = '#';
+        floatingCheckout.classList.add('disabled');
+        return;
+      }
+
+      message += `\nEstimated Total: R${total.toFixed(2)} per month\n\nPlease assist with the next steps.`;
+
+      const url = `https://wa.me/27824166284?text=${encodeURIComponent(message)}`;
+      floatingCheckout.href = url;
+      floatingCheckout.classList.remove('disabled');
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
