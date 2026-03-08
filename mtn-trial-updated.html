@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTN VPN Free Trial | M&J Internet</title>
+  <style>
+    :root {
+      --bg: #071120;
+      --panel: #0d1b2e;
+      --panel-2: #10233c;
+      --line: rgba(255,255,255,0.09);
+      --text: #f8fbff;
+      --muted: #aab8cc;
+      --primary: #18c3ff;
+      --primary-2: #4f46e5;
+      --mtn: #ffcc00;
+      --mtn-2: #ffb300;
+      --success: #25D366;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(79,70,229,0.24), transparent 30%),
+        radial-gradient(circle at top left, rgba(24,195,255,0.16), transparent 24%),
+        linear-gradient(180deg, #071120 0%, #091526 42%, #08101d 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(100%, 430px);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 16px 14px 110px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.92rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      background: linear-gradient(155deg, rgba(255,204,0,0.18), rgba(255,179,0,0.14)), var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -35px;
+      top: -35px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,204,0,0.34), transparent 70%);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff8cf;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: 1.95rem;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      max-width: 290px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 18px;
+      max-width: 320px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-badges span,
+    .feature-list span,
+    .step-tag,
+    .trial-meta span {
+      font-size: 0.78rem;
+      color: #f7f1d4;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 7px 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .stat,
+    .panel,
+    .step,
+    .trial-card,
+    .note,
+    .support {
+      background: linear-gradient(180deg, rgba(16,35,60,0.96), rgba(10,24,42,0.94));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      border-radius: 18px;
+      padding: 14px 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 2px 14px;
+    }
+
+    .section-title h2 {
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title small {
+      color: var(--muted);
+    }
+
+    .panel,
+    .note,
+    .support {
+      border-radius: 26px;
+      padding: 18px;
+    }
+
+    .panel p,
+    .support p,
+    .step p,
+    .trial-card p,
+    .note p,
+    .note li {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.9rem;
+    }
+
+    .panel ul {
+      margin-top: 14px;
+      padding-left: 18px;
+    }
+
+    .panel li {
+      color: var(--muted);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .steps,
+    .trials {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step,
+    .trial-card {
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .step strong,
+    .trial-card h3 {
+      display: block;
+      margin: 10px 0 8px;
+      font-size: 1rem;
+    }
+
+    .trial-card h3 {
+      font-size: 1.2rem;
+    }
+
+    .trial-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .download-size {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .trial-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .download-btn,
+    .support-btn,
+    .bottom-bar a {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .download-btn:hover,
+    .support-btn:hover,
+    .bottom-bar a:hover {
+      transform: translateY(-1px);
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, var(--mtn), var(--mtn-2));
+      color: #08101d;
+    }
+
+    .note {
+      background: linear-gradient(180deg, rgba(255,204,0,0.12), rgba(10,24,42,0.96));
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff4b8;
+    }
+
+    .support-btn,
+    .bottom-bar a {
+      background: linear-gradient(135deg, #22c55e, var(--success));
+      color: white;
+    }
+
+    .support p {
+      margin-bottom: 14px;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: rgba(255,255,255,0.52);
+      font-size: 0.78rem;
+      margin-top: 18px;
+      line-height: 1.45;
+    }
+
+    .bottom-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: min(calc(100% - 28px), 402px);
+      padding: 12px 14px;
+      background: rgba(6, 15, 26, 0.92);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+      z-index: 30;
+    }
+
+    .bottom-bar small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 3px;
+      font-size: 0.76rem;
+    }
+
+    .bottom-bar strong {
+      font-size: 1rem;
+    }
+
+    .bottom-bar a {
+      width: auto;
+      white-space: nowrap;
+    }
+
+    @media (min-width: 760px) {
+      .page {
+        width: min(100%, 1100px);
+        padding: 24px 20px 110px;
+      }
+
+      .steps {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .trials {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h1,
+      .hero p {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-badge">📶</div>
+        <div>
+          <strong>M&amp;J Internet</strong><br />
+          <span>MTN Free VPN Trial</span>
+        </div>
+      </div>
+      <div>MTN • Trial • VPN</div>
+    </div>
+
+    <section class="hero">
+      <div class="pill">⚡ Fast trial access • MTN only</div>
+      <h1>Test the MTN Free VPN Trial with the same premium look as the main store.</h1>
+      <p>Download a trial file, import it into NPV Tunnel, and test speed, stability, and compatibility before upgrading.</p>
+      <div class="hero-badges">
+        <span>📱 Android</span>
+        <span>🍎 iPhone</span>
+        <span>🟡 MTN Network</span>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>2</strong>
+        <span>Trial files</span>
+      </div>
+      <div class="stat">
+        <strong>Free</strong>
+        <span>No payment</span>
+      </div>
+      <div class="stat">
+        <strong>1 tap</strong>
+        <span>WhatsApp help</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>What you get</h2>
+        <small>Trial overview</small>
+      </div>
+      <div class="panel">
+        <p>MTN users can test the VPN service with limited free trial data before moving to a full package.</p>
+        <div class="feature-list">
+          <span>✔ Works on MTN SIM cards</span>
+          <span>✔ No payment required</span>
+          <span>✔ Android &amp; iPhone supported</span>
+        </div>
+        <ul>
+          <li>Use the trial to check speed and setup quality.</li>
+          <li>Import the file directly into NPV Tunnel.</li>
+          <li>Upgrade later if you want the full unlimited VPN package.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>How it works</h2>
+        <small>4 quick steps</small>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-tag">Step 1</div>
+          <strong>Use an MTN SIM</strong>
+          <p>Insert an active MTN SIM card with any available data balance.</p>
+        </div>
+        <div class="step">
+          <div class="step-tag">Step 2</div>
+          <strong>Download NPV Tunnel</strong>
+          <p>Install <strong>NPV Tunnel</strong> from the Play Store or App Store.</p>
+        </div>
+        <div class="step">
+          <div class="step-tag">Step 3</div>
+          <strong>Import your trial file</strong>
+          <p>Choose one of the trial files below and import it into the app.</p>
+        </div>
+        <div class="step">
+          <div class="step-tag">Step 4</div>
+          <strong>Connect and test</strong>
+          <p>Start the VPN and check speed, stability, and compatibility.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Free VPN trial files</h2>
+        <small>MTN only</small>
+      </div>
+      <div class="trials">
+        <article class="trial-card">
+          <div class="trial-top">
+            <div>
+              <div class="step-tag">Starter trial</div>
+              <h3>100MB Free Trial</h3>
+            </div>
+            <div class="download-size">100MB</div>
+          </div>
+          <p>Perfect for quick testing, setup verification, and checking if the app connects correctly.</p>
+          <div class="trial-meta">
+            <span>⚡ Quick test</span>
+            <span>🟡 MTN</span>
+            <span>📥 NPV file</span>
+          </div>
+          <a class="download-btn" href="https://www.mediafire.com/file_premium/7rmn5aurx2hi9h9/%25E1%25B4%258D%2526%25E1%25B4%258A_100%25E1%25B4%258D%25CA%2599_M%25E1%25B4%259B%25C9%25B4_D%25E1%25B4%2580%25E1%25B4%259B%25E1%25B4%2580_F%25C9%25AA%25CA%259F%25E1%25B4%2587_%25F0%259F%2587%25AC%25F0%259F%2587%25A7.npvt/file" target="_blank">⬇ Download 100MB VPN File</a>
+        </article>
+
+        <article class="trial-card">
+          <div class="trial-top">
+            <div>
+              <div class="step-tag">Extended trial</div>
+              <h3>300MB Free Trial</h3>
+            </div>
+            <div class="download-size">300MB</div>
+          </div>
+          <p>Best for longer testing sessions, speed checks, and confirming real-world performance.</p>
+          <div class="trial-meta">
+            <span>🚀 Longer test</span>
+            <span>🟡 MTN</span>
+            <span>📥 NPV file</span>
+          </div>
+          <a class="download-btn" href="https://www.mediafire.com/file_premium/e8np6mevvds7lme/%25E1%25B4%258D%2526%25E1%25B4%258A_300%25E1%25B4%258D%25CA%2599_M%25E1%25B4%259B%25C9%25B4_D%25E1%25B4%2580%25E1%25B4%259B%25E1%25B4%2580_F%25C9%25AA%25CA%259F%25E1%25B4%2587_%25F0%259F%2587%25AC%25F0%259F%2587%25A7.npvt/file" target="_blank">⬇ Download 300MB VPN File</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="note">
+        <strong>⚠ Important note</strong>
+        <p>This free trial is limited to MTN networks only. Abuse or sharing of files may result in access being blocked.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Need help or want to upgrade?</h2>
+        <small>Support</small>
+      </div>
+      <div class="support">
+        <p>If you need help setting up the VPN or want to upgrade to a full unlimited VPN package, contact M&amp;J Internet on WhatsApp.</p>
+        <a class="support-btn" href="https://wa.me/27824166284" target="_blank">💬 Contact Support on WhatsApp</a>
+        <p class="footer-note">© 2026 M&amp;J Internet | MTN VPN Trial</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="bottom-bar">
+    <div>
+      <small>Need setup help?</small>
+      <strong>WhatsApp support</strong>
+    </div>
+    <a href="https://wa.me/27824166284" target="_blank">💬 Chat now</a>
+  </div>
+</body>
+</html>
