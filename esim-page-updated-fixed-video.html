@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eSIM Trial | M&J Internet</title>
+  <style>
+    :root {
+      --bg: #071120;
+      --panel: #0d1b2e;
+      --line: rgba(255,255,255,0.09);
+      --text: #f8fbff;
+      --muted: #aab8cc;
+      --primary: #18c3ff;
+      --primary-2: #4f46e5;
+      --accent: #22c55e;
+      --warm: #f59e0b;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(79,70,229,0.24), transparent 30%),
+        radial-gradient(circle at top left, rgba(24,195,255,0.16), transparent 24%),
+        linear-gradient(180deg, #071120 0%, #091526 42%, #08101d 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(100%, 430px);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 16px 14px 110px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.92rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      background: linear-gradient(160deg, rgba(24,195,255,0.18), rgba(79,70,229,0.18)), var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -30px;
+      top: -35px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(24,195,255,0.34), transparent 70%);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dff7ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: 1.95rem;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      max-width: 290px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 18px;
+      max-width: 320px;
+    }
+
+    .hero-badges,
+    .chip-row,
+    .plan-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-badges span,
+    .chip-row span,
+    .plan-meta span,
+    .step-tag {
+      font-size: 0.78rem;
+      color: #dce7f7;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 7px 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .stat,
+    .box,
+    .step,
+    .plan-card,
+    .faq,
+    .compatibility,
+    .video-box,
+    .support {
+      background: linear-gradient(180deg, rgba(16,35,60,0.96), rgba(10,24,42,0.94));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      border-radius: 18px;
+      padding: 14px 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 2px 14px;
+    }
+
+    .section-title h2 {
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title small {
+      color: var(--muted);
+    }
+
+    .box,
+    .compatibility,
+    .faq,
+    .video-box,
+    .support {
+      border-radius: 26px;
+      padding: 18px;
+    }
+
+    .box p,
+    .compatibility p,
+    .faq p,
+    .video-box p,
+    .support p,
+    .step p,
+    .plan-card p {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.9rem;
+    }
+
+    .steps,
+    .plans {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step,
+    .plan-card {
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .step strong,
+    .plan-card h3 {
+      display: block;
+      margin: 10px 0 8px;
+      font-size: 1rem;
+    }
+
+    .plan-card h3 {
+      font-size: 1.2rem;
+    }
+
+    .plan-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .plan-price {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #e8f7ff;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-top: 14px;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #000;
+    }
+
+    .video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .plan-btn,
+    .support-btn,
+    .bottom-bar a {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .plan-btn:hover,
+    .support-btn:hover,
+    .bottom-bar a:hover {
+      transform: translateY(-1px);
+    }
+
+    .plan-btn {
+      background: linear-gradient(135deg, var(--primary), #39d0ff);
+      color: #052033;
+      margin-top: 14px;
+    }
+
+    .support-btn,
+    .bottom-bar a {
+      background: linear-gradient(135deg, #22c55e, #25D366);
+      color: white;
+    }
+
+    .faq p + p { margin-top: 14px; }
+
+    .footer-note {
+      text-align: center;
+      color: rgba(255,255,255,0.52);
+      font-size: 0.78rem;
+      margin-top: 18px;
+      line-height: 1.45;
+    }
+
+    .bottom-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: min(calc(100% - 28px), 402px);
+      padding: 12px 14px;
+      background: rgba(6, 15, 26, 0.92);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+      z-index: 30;
+    }
+
+    .bottom-bar small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 3px;
+      font-size: 0.76rem;
+    }
+
+    .bottom-bar strong {
+      font-size: 1rem;
+    }
+
+    .bottom-bar a {
+      width: auto;
+      white-space: nowrap;
+    }
+
+    @media (min-width: 760px) {
+      .page {
+        width: min(100%, 1100px);
+        padding: 24px 20px 110px;
+      }
+
+      .steps {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .plans {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      .hero h1,
+      .hero p { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-badge">📶</div>
+        <div>
+          <strong>M&amp;J Internet</strong><br />
+          <span>eSIM Trial Page</span>
+        </div>
+      </div>
+      <div>eSIM • Trial • VPN</div>
+    </div>
+
+    <section class="hero">
+      <div class="pill">⚡ Instant eSIM setup • Trial testing</div>
+      <h1>Try our eSIM network with the same premium look as the main page.</h1>
+      <p>Test coverage, speed, and reliability before you commit. Activate the eSIM, import your VPN setup, and check performance on your device.</p>
+      <div class="hero-badges">
+        <span>📱 eSIM devices only</span>
+        <span>🌐 Coverage testing</span>
+        <span>🔐 NPV Tunnel</span>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>1</strong>
+        <span>eSIM network</span>
+      </div>
+      <div class="stat">
+        <strong>24h</strong>
+        <span>Trial validity</span>
+      </div>
+      <div class="stat">
+        <strong>1 tap</strong>
+        <span>WhatsApp help</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>How it works</h2>
+        <small>Step-by-step</small>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-tag">Step 1</div>
+          <strong>Choose network</strong>
+          <p>Select the Redbull eSIM network to start your test.</p>
+        </div>
+        <div class="step">
+          <div class="step-tag">Step 2</div>
+          <strong>Download the app</strong>
+          <p>Install the Redbull Mobile app from the App Store or Play Store.</p>
+        </div>
+        <div class="step">
+          <div class="step-tag">Step 3</div>
+          <strong>Sign up &amp; activate</strong>
+          <p>Create your account in the app and activate the free eSIM trial.</p>
+        </div>
+        <div class="step">
+          <div class="step-tag">Step 4</div>
+          <strong>Install NPV Tunnel</strong>
+          <p>Download the VPN app called <strong>NPV Tunnel</strong>.</p>
+        </div>
+        <div class="step">
+          <div class="step-tag">Step 5</div>
+          <strong>Import the VPN file</strong>
+          <p>Load your VPN configuration into the app and test the service.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Video setup guide</h2>
+        <small>Installation walkthrough</small>
+      </div>
+      <div class="video-box">
+        <p>Watch the step-by-step guide to install the <strong>Redbull Mobile App</strong>, activate your <strong>eSIM</strong>, and connect using <strong>NPV Tunnel</strong>.</p>
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/pEeFsjK_SEw?rel=0&playsinline=1"
+            title="Redbull eSIM and VPN Setup Guide"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <a class="video-link" href="https://www.youtube.com/watch?v=pEeFsjK_SEw" target="_blank" rel="noopener noreferrer">▶ Open video directly on YouTube</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Available eSIM network</h2>
+        <small>Trial offer</small>
+      </div>
+      <div class="plans">
+        <article class="plan-card">
+          <div class="plan-top">
+            <div>
+              <div class="step-tag">Featured trial</div>
+              <h3>Redbull eSIM</h3>
+            </div>
+            <div class="plan-price">24 Hours</div>
+          </div>
+          <p>Best for speed testing, basic coverage checks, and trying the VPN service on an eSIM-compatible device.</p>
+          <div class="plan-meta">
+            <span>♾ Unlimited</span>
+            <span>📶 Speed test</span>
+            <span>🧪 Trial use</span>
+          </div>
+          <a class="plan-btn" href="https://wa.me/27824166284" target="_blank">📱 Try Redbull eSIM</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Device compatibility</h2>
+        <small>Before you start</small>
+      </div>
+      <div class="compatibility">
+        <p>This service works on <strong>eSIM-compatible devices only</strong>. Supported devices include iPhone XS and newer, Samsung Galaxy S20+, and many newer Android devices with eSIM support.</p>
+        <div class="chip-row" style="margin-top:14px;">
+          <span>🍎 iPhone XS and newer</span>
+          <span>🤖 Modern Android</span>
+          <span>📲 eSIM required</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Frequently asked questions</h2>
+        <small>Quick answers</small>
+      </div>
+      <div class="faq">
+        <p><strong>Is the trial free?</strong><br />Trials may be free or low-cost and are for testing purposes only.</p>
+        <p><strong>Can I use hotspot or streaming?</strong><br />Trials are limited and meant for basic testing.</p>
+        <p><strong>Can I upgrade after the trial?</strong><br />No. This page is only for testing the VPN service. Available networks for purchase are on the main page.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Need help?</h2>
+        <small>Support</small>
+      </div>
+      <div class="support">
+        <p>If you need help activating your eSIM or setting up the VPN, contact M&amp;J Internet on WhatsApp.</p>
+        <a class="support-btn" href="https://wa.me/27824166284" target="_blank">💬 Contact Support on WhatsApp</a>
+        <p class="footer-note">© 2026 M&amp;J Internet | eSIM Network</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="bottom-bar">
+    <div>
+      <small>Need setup help?</small>
+      <strong>WhatsApp support</strong>
+    </div>
+    <a href="https://wa.me/27824166284" target="_blank">💬 Chat now</a>
+  </div>
+</body>
+</html>
