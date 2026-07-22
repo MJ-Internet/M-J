@@ -507,7 +507,6 @@
       pointer-events: none;
     }
 
-    /* Desktop and Laptop Responsive Layout */
     @media (min-width: 768px) {
       .page {
         width: min(100%, 1000px);
@@ -534,7 +533,7 @@
       }
 
       .floating-bar {
-        display: none; /* Cart is already fixed on screen for laptops */
+        display: none;
       }
     }
   </style>
@@ -555,9 +554,9 @@
     </div>
 
     <section class="hero">
-      <div class="pill">⚡ Fast activation • WhatsApp checkout</div>
+      <div class="pill">⚡ Fast Activation • WhatsApp Checkout</div>
       <h1>Unlimited mobile data, built like a real phone network shop.</h1>
-      <p>Choose your network, compare pricing, and send your order directly to M&amp;J Internet in one tap.</p>
+      <p>Choose your network, compare pricing, and send your order directly to M&amp;J Internet with a single tap.</p>
       <div class="signal-bar" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span>
       </div>
@@ -571,10 +570,10 @@
       </div>
       <div class="stat">
         <strong>24/7</strong>
-        <span>Order channel</span>
+        <span>Order Channel</span>
       </div>
       <div class="stat">
-        <strong>1 tap</strong>
+        <strong>1 Tap</strong>
         <span>Checkout</span>
       </div>
     </div>
@@ -593,7 +592,7 @@
     <div class="content-grid">
       <main>
         <div class="section-title">
-          <h2>Featured data plans</h2>
+          <h2>Featured Data Plans</h2>
           <small>Select one or more</small>
         </div>
 
@@ -603,21 +602,20 @@
               <div class="logo"><img src="rainimage2.jpg" alt="Rain data package"></div>
               <div>
                 <div class="network-tag">🟢 Available now</div>
-                <h3>RAIN Unlimited Data</h3>
+                <h3>Rain Zivpn Za Unlimited</h3>
                 <div class="provider">RainGo Mobile</div>
               </div>
             </div>
             <div class="price-row">
-              <div class="price">R149.99 <small>/ month</small></div>
+              <div class="price">R100.00 <small>/ month</small></div>
               <div class="badge-5g">4G / 5G</div>
             </div>
             <div class="features">
               <span>Unlimited plan</span>
-              <span>Android</span>
-              <span>iPhone</span>
+              <span>Android only</span>
             </div>
-            <div class="desc">VPN service with strong mobile compatibility for Android and iPhone devices.</div>
-            <button id="btn-RAIN" onclick="toggleCart('RAIN', 'Unlimited Data', 149.99)">Add RAIN plan</button>
+            <div class="desc">VPN service with high-speed compatibility, specifically configured for Android devices.</div>
+            <button id="btn-RAIN" onclick="toggleCart('RAIN', 'Zivpn Za Unlimited', 100.00)">Add Rain plan</button>
           </article>
 
           <article class="card">
@@ -638,7 +636,7 @@
               <span>Android</span>
               <span>iPhone</span>
             </div>
-            <div class="desc">Balanced unlimited package for customers who want both iPhone and Android support.</div>
+            <div class="desc">Balanced unlimited package for customers requiring both iPhone and Android support.</div>
             <button id="btn-CELLC" onclick="toggleCart('CELLC', 'Unlimited Data', 149.99)">Add CellC plan</button>
           </article>
         </section>
@@ -646,13 +644,13 @@
 
       <aside class="cart">
         <div class="cart-head">
-          <h2>Your cart</h2>
-          <span>WhatsApp order</span>
+          <h2>Your Cart</h2>
+          <span>WhatsApp Order</span>
         </div>
         <ul id="cartItems"></ul>
         <p id="emptyState" class="empty">No data plan selected yet. Tap any package to begin.</p>
         <div class="total">
-          <span>Total monthly</span>
+          <span>Total Monthly</span>
           <strong>R<span id="total">0.00</span></strong>
         </div>
         <p class="footer-note">Orders are sent directly via WhatsApp to M&amp;J Internet.</p>
@@ -704,7 +702,7 @@
             btn.textContent = `✓ ${p} Added`;
             btn.classList.add('added');
           } else {
-            btn.textContent = `Add ${p} plan`;
+            btn.textContent = `Add ${p === 'RAIN' ? 'Rain' : 'CellC'} plan`;
             btn.classList.remove('added');
           }
         }
