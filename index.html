@@ -503,7 +503,7 @@
       }
 
       .packages {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .hero h1,
@@ -538,7 +538,7 @@
 
     <div class="stats">
       <div class="stat">
-        <strong>3</strong>
+        <strong>2</strong>
         <span>Networks</span>
       </div>
       <div class="stat">
@@ -593,28 +593,6 @@
 
         <article class="card">
           <div class="card-top">
-            <div class="logo"><img src="telkomimage.jpg" alt="Telkom data package"></div>
-            <div>
-              <div class="network-tag">🟢 Popular choice</div>
-              <h3>Telkom 4G/5G Unlimited</h3>
-              <div class="provider">Telkom SA</div>
-            </div>
-          </div>
-          <div class="price-row">
-            <div class="price">R99.99 <small>/ month</small></div>
-            <div class="badge-5g">4G / 5G</div>
-          </div>
-          <div class="features">
-            <span>Unlimited LTE</span>
-            <span>Android only</span>
-            <span>Monthly plan</span>
-          </div>
-          <div class="desc">Affordable Telkom option for Android users who need stable monthly unlimited access.</div>
-          <button onclick="addToCart('TELKOM', 'LTE Unlimited', 99.99)">Add Telkom plan</button>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
             <div class="logo"><img src="cellcimage1.jpg" alt="CellC data package"></div>
             <div>
               <div class="network-tag">🟢 Multi-device</div>
@@ -661,7 +639,7 @@
   </div>
 
   <script>
-    const cart = { RAIN: null, TELKOM: null, CELLC: null };
+    const cart = { RAIN: null, CELLC: null };
 
     function addToCart(provider, name, price) {
       cart[provider] = { provider, name, price };
