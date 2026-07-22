@@ -579,7 +579,7 @@
 
     <div class="stats">
       <div class="stat">
-        <strong>2</strong>
+        <strong>4</strong>
         <span>Networks</span>
       </div>
       <div class="stat">
@@ -611,6 +611,7 @@
         </div>
 
         <section class="packages">
+          <!-- RAIN PLAN -->
           <article class="card">
             <div class="card-top">
               <div class="logo"><img src="rainimage2.jpg" alt="Rain data package"></div>
@@ -634,9 +635,10 @@
                 <li>Specifically configured for Android devices.</li>
               </ul>
             </div>
-            <button id="btn-RAIN" onclick="toggleCart('RAIN', 'Zivpn Za Unlimited', 100.00)">Add Rain plan</button>
+            <button id="btn-RAIN" onclick="toggleCart('RAIN', 'Rain Zivpn Za Unlimited', 100.00)">Add Rain plan</button>
           </article>
 
+          <!-- CELLC 130GB MONTHLY -->
           <article class="card">
             <div class="card-top">
               <div class="logo"><img src="cellcimage1.jpg" alt="CellC data package"></div>
@@ -662,7 +664,67 @@
                 <li>Works best for downloading and streaming.</li>
               </ul>
             </div>
-            <button id="btn-CELLC" onclick="toggleCart('CELLC', '130GB Monthly', 130.00)">Add CellC plan</button>
+            <button id="btn-CELLC_130" onclick="toggleCart('CELLC_130', 'Cellc 130GB Monthly', 130.00)">Add CellC Monthly</button>
+          </article>
+
+          <!-- CELLC 40GB WEEKLY -->
+          <article class="card">
+            <div class="card-top">
+              <div class="logo"><img src="cellcimage1.jpg" alt="CellC data package"></div>
+              <div>
+                <div class="network-tag">🟢 Weekly Pass</div>
+                <h3>Cellc 40GB Weekly</h3>
+                <div class="provider">CellC Mobile</div>
+              </div>
+            </div>
+            <div class="price-row">
+              <!-- Replace R0.00 with your actual price -->
+              <div class="price">R0.00 <small>/ week</small></div>
+              <div class="badge-5g">4G / 5G</div>
+            </div>
+            <div class="features">
+              <span>40GB Data</span>
+              <span>Android</span>
+              <span>iPhone</span>
+            </div>
+            <div class="desc">
+              <ul class="desc-list">
+                <li>Works on Android and iPhone devices.</li>
+                <li>Speed depends on network and location.</li>
+                <li>Works best for downloading and streaming.</li>
+              </ul>
+            </div>
+            <!-- Update the price value (currently 0.00) if needed -->
+            <button id="btn-CELLC_40" onclick="toggleCart('CELLC_40', 'Cellc 40GB Weekly', 0.00)">Add CellC Weekly</button>
+          </article>
+
+          <!-- TELKOM X VODACOM PACKAGE -->
+          <article class="card">
+            <div class="card-top">
+              <div class="logo"><img src="telkomvodacom.jpg" alt="Telkom x Vodacom data package"></div>
+              <div>
+                <div class="network-tag">🟢 Dual Network</div>
+                <h3>Telkom x Vodacom Package</h3>
+                <div class="provider">Telkom / Vodacom</div>
+              </div>
+            </div>
+            <div class="price-row">
+              <!-- Replace R0.00 with your actual price -->
+              <div class="price">R0.00 <small>/ month</small></div>
+              <div class="badge-5g">4G / 5G</div>
+            </div>
+            <div class="features">
+              <span>Telkom 5GB</span>
+              <span>Vodacom 1GB</span>
+            </div>
+            <div class="desc">
+              <ul class="desc-list">
+                <li>Requires airplane mode before connecting.</li>
+                <li>Telkom ( 5GB ) &amp; Vodacom ( 1GB ).</li>
+              </ul>
+            </div>
+            <!-- Update the price value (currently 0.00) if needed -->
+            <button id="btn-TELKOM_VODA" onclick="toggleCart('TELKOM_VODA', 'Telkom x Vodacom Package', 0.00)">Add Combo Plan</button>
           </article>
         </section>
       </main>
@@ -675,7 +737,7 @@
         <ul id="cartItems"></ul>
         <p id="emptyState" class="empty">No data plan selected yet. Tap any package to begin.</p>
         <div class="total">
-          <span>Total Monthly</span>
+          <span>Total</span>
           <strong>R<span id="total">0.00</span></strong>
         </div>
         <p class="footer-note">Orders are sent directly via WhatsApp to M&amp;J Internet.</p>
@@ -686,25 +748,30 @@
   <div class="floating-bar">
     <div>
       <small>Current total</small>
-      <strong>R<span id="floatingTotal">0.00</span> / month</strong>
+      <strong>R<span id="floatingTotal">0.00</span></strong>
     </div>
     <a id="floatingCheckout" class="disabled" href="#">💬 WhatsApp Checkout</a>
   </div>
 
   <script>
-    const cart = { RAIN: null, CELLC: null };
+    const cart = { 
+      RAIN: null, 
+      CELLC_130: null, 
+      CELLC_40: null, 
+      TELKOM_VODA: null 
+    };
 
-    function toggleCart(provider, name, price) {
-      if (cart[provider]) {
-        cart[provider] = null;
+    function toggleCart(key, name, price) {
+      if (cart[key]) {
+        cart[key] = null;
       } else {
-        cart[provider] = { provider, name, price };
+        cart[key] = { key, name, price };
       }
       renderCart();
     }
 
-    function removeFromCart(provider) {
-      cart[provider] = null;
+    function removeFromCart(key) {
+      cart[key] = null;
       renderCart();
     }
 
@@ -720,14 +787,21 @@
       let count = 0;
 
       // Update button UI states
-      ['RAIN', 'CELLC'].forEach(p => {
-        const btn = document.getElementById(`btn-${p}`);
+      const keyToBtnMap = {
+        RAIN: { id: 'btn-RAIN', short: 'Rain' },
+        CELLC_130: { id: 'btn-CELLC_130', short: 'CellC Monthly' },
+        CELLC_40: { id: 'btn-CELLC_40', short: 'CellC Weekly' },
+        TELKOM_VODA: { id: 'btn-TELKOM_VODA', short: 'Combo Plan' }
+      };
+
+      Object.keys(keyToBtnMap).forEach(key => {
+        const btn = document.getElementById(keyToBtnMap[key].id);
         if (btn) {
-          if (cart[p]) {
-            btn.textContent = `✓ ${p === 'RAIN' ? 'Rain' : 'CellC'} Added`;
+          if (cart[key]) {
+            btn.textContent = `✓ ${keyToBtnMap[key].short} Added`;
             btn.classList.add('added');
           } else {
-            btn.textContent = `Add ${p === 'RAIN' ? 'Rain' : 'CellC'} plan`;
+            btn.textContent = `Add ${keyToBtnMap[key].short}`;
             btn.classList.remove('added');
           }
         }
@@ -739,15 +813,15 @@
         if (!item) return;
         count += 1;
         total += item.price;
-        message += `- ${item.provider} ${item.name} (R${item.price.toFixed(2)}/month)\n`;
+        message += `- ${item.name} (R${item.price.toFixed(2)})\n`;
 
         const li = document.createElement('li');
         li.innerHTML = `
           <div class="cart-item">
-            <strong>${item.provider} ${item.name}</strong>
-            <span>R${item.price.toFixed(2)} / month</span>
+            <strong>${item.name}</strong>
+            <span>R${item.price.toFixed(2)}</span>
           </div>
-          <button class="remove-btn" onclick="removeFromCart('${item.provider}')">Remove</button>
+          <button class="remove-btn" onclick="removeFromCart('${item.key}')">Remove</button>
         `;
         cartItems.appendChild(li);
       });
@@ -756,15 +830,16 @@
       floatingTotal.textContent = total.toFixed(2);
       emptyState.style.display = count === 0 ? 'block' : 'none';
 
-      if (total === 0) {
+      if (count === 0) {
         floatingCheckout.href = '#';
         floatingCheckout.classList.add('disabled');
         return;
       }
 
-      message += `\nEstimated Total: R${total.toFixed(2)} per month\n\nPlease assist with the next steps.`;
+      message += `\nEstimated Total: R${total.toFixed(2)}\n\nPlease assist with the next steps.`;
 
-      const url = `https://wa.me/27698996679?text=${encodeURIComponent(message)}`;
+      // Replace 27824166284 below with your actual WhatsApp personal phone number
+      const url = `https://wa.me/27824166284?text=${encodeURIComponent(message)}`;
       floatingCheckout.href = url;
       floatingCheckout.classList.remove('disabled');
     }
